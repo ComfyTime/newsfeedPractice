@@ -9,8 +9,10 @@ API 구성 https://www.notion.so/teamsparta/API-ERD-1b22dc3ef51481e883a4fcc09946
 ![image](https://github.com/user-attachments/assets/d53614b7-b896-4bf5-8d0f-e0da06e905c7)
 ![image](https://github.com/user-attachments/assets/ff48b1ab-e88f-4d95-bfe1-d24cf1a381db)
 ![image](https://github.com/user-attachments/assets/11c76f1c-88d2-4f6f-9d78-4884331bd8f6)
+
 LV2 10개씩 게시물 묶음 미구현 되었습니다.
 LV3 Bcrypt 관련 미구현
+
 ![image](https://github.com/user-attachments/assets/3f99b2c6-f48e-42e4-a4dd-f813a51346fa)
 ![image](https://github.com/user-attachments/assets/a9484469-0bfe-4330-9018-34eb91a8fbda)
 ![image](https://github.com/user-attachments/assets/639141c6-fb41-40e8-bbc7-556f9ca9150c)
