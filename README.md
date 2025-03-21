@@ -1,4 +1,9 @@
 API 구성 https://www.notion.so/teamsparta/API-ERD-1b22dc3ef51481e883a4fcc099464d0a?pvs=4
+![image](https://github.com/user-attachments/assets/e3597b9a-4931-484f-8879-545690a045c7)
+![image](https://github.com/user-attachments/assets/b4bfe085-830d-40ff-afc6-7e09d4b70016)
+![image](https://github.com/user-attachments/assets/c5d419ef-21fb-4344-a66e-806e3d7dbc1b)
+![image](https://github.com/user-attachments/assets/8eb4d3f9-8760-45f9-a1ec-9cab3bbc1b61)
+
 ![ERD1](https://github.com/user-attachments/assets/26e0f5e9-dcef-408f-a12b-662e8591ca36)
 
 ![image](https://github.com/user-attachments/assets/d53614b7-b896-4bf5-8d0f-e0da06e905c7)
