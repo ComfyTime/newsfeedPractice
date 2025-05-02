@@ -69,4 +69,23 @@ public class PostController {
         postService.deletePost(memberId, postId);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/posts/{postId}/like")
+    public ResponseEntity<Void> likePost(
+            @SessionAttribute(name = Const.LOGIN_MEMBER) Long memberId,
+            @PathVariable Long postId
+    ) {
+        postService.likePost(memberId, postId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/posts/{postId}/like")
+    public ResponseEntity<Void> unlikePost(
+            @SessionAttribute(name = Const.LOGIN_MEMBER) Long memberId,
+            @PathVariable Long postId
+    ) {
+        postService.unlikePost(memberId, postId);
+        return ResponseEntity.ok().build();
+    }
+
 }

@@ -7,6 +7,8 @@ import org.example.newsfeedPractice.member.entity.Member;
 import org.example.newsfeedPractice.member.repository.MemberRepository;
 import org.example.newsfeedPractice.post.dto.*;
 import org.example.newsfeedPractice.post.entity.Post;
+import org.example.newsfeedPractice.post.entity.PostLike;
+import org.example.newsfeedPractice.post.repository.PostLikeRepository;
 import org.example.newsfeedPractice.post.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
     private final FollowRepository followRepository;
+    private final PostLikeRepository postLikeRepository;
 
     @Transactional
     public PostSaveResponseDTO savePost(Long memberId, PostSaveRequestDTO postSaveRequestDto) {
@@ -141,4 +144,45 @@ public class PostService {
 
         postRepository.delete(post);
     }
+
+    @Transactional
+    public void likePost(Long memberId, Long postId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalStateException("해당 회원 없음"));
+
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalStateException("해당 게시글 없음"));
+
+        if (post.getMember().getId().equals(memberId)) {
+            throw new IllegalStateException("자신의 게시물에는 좋아요할 수 없습니다");
+        }
+
+        postLikeRepository.findByMemberAndPost(member, post).ifPresentOrElse(
+                pl -> {
+                    throw new IllegalStateException("이미 좋아요한 게시글입니다");
+                },
+                () -> {
+                    postLikeRepository.save(new PostLike(member, post));
+                    post.incrementLikes();
+                    postRepository.save(post);
+                }
+        );
+    }
+
+    @Transactional
+    public void unlikePost(Long memberId, Long postId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalStateException("해당 회원 없음"));
+
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalStateException("해당 게시글 없음"));
+
+        PostLike postLike = postLikeRepository.findByMemberAndPost(member, post)
+                .orElseThrow(() -> new IllegalStateException("좋아요한 적 없는 게시글입니다"));
+
+        postLikeRepository.delete(postLike);
+        post.setLikes(post.getLikes() - 1);
+        postRepository.save(post);
+    }
 }
+
